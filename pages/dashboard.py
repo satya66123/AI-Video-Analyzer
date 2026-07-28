@@ -80,7 +80,7 @@ def show_dashboard(provider_name, selected_model):
             "✅ General Setup",
             "✅ Provider Management",
             "✅ Video Upload & Management",
-            "⬜ Audio Processing",
+            "✅ Audio Processing",
             "⬜ Speech-to-Text",
             "⬜ AI Video Analysis",
             "⬜ AI Chat",
