@@ -12,7 +12,7 @@ class BaseProvider(ABC):
         pass
 
     @abstractmethod
-    def generate(self, prompt: str):
+    def generate(self,model:str, prompt: str):
         """Generate AI response."""
         pass
 

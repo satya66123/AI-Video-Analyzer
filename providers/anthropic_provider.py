@@ -28,7 +28,7 @@ class AnthropicProvider(BaseProvider):
     def generate(
         self,
         prompt,
-        model="claude-sonnet-4",
+        model,
         max_tokens=1024,
         temperature=0.7
     ):

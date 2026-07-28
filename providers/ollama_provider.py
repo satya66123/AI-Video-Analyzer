@@ -10,7 +10,6 @@ class OllamaProvider(BaseProvider):
     def get_models(self):
 
         try:
-
             response = requests.get(
                 f"{self.BASE_URL}/api/tags",
                 timeout=10
@@ -21,17 +20,29 @@ class OllamaProvider(BaseProvider):
             return response.json()
 
         except Exception:
-
             return {}
 
-    def generate(self, prompt):
+    def generate(self, prompt, model):
 
-        pass
+        payload = {
+            "model": model,
+            "prompt": prompt,
+            "stream": False
+        }
+
+        response = requests.post(
+            f"{self.BASE_URL}/api/generate",
+            json=payload,
+            timeout=300
+        )
+
+        response.raise_for_status()
+
+        return response.json()["response"]
 
     def health_check(self):
 
         try:
-
             response = requests.get(
                 self.BASE_URL,
                 timeout=5
@@ -40,5 +51,4 @@ class OllamaProvider(BaseProvider):
             return response.status_code == 200
 
         except Exception:
-
             return False

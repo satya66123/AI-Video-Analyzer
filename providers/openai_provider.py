@@ -27,12 +27,12 @@ class OpenAIProvider(BaseProvider):
 
             return []
 
-    def generate(self, prompt):
+    def generate(self,model, prompt):
 
         try:
 
             response = self.client.responses.create(
-                model="gpt-5",
+                model=model,
                 input=prompt
             )
 

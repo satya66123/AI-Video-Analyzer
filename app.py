@@ -1,12 +1,12 @@
 import streamlit as st
 
+from components.show_ai_analysis import show_ai_analysis
 from components.sidebar import show_sidebar
 
 from pages.dashboard import show_dashboard
 from pages.video_upload import show_video_upload
 from pages.audio_processing import show_audio_processing
 from pages.speech_to_text import show_speech_to_text
-from pages.ai_analysis import show_ai_analysis
 from pages.ai_chat import show_ai_chat
 from pages.reports import show_reports
 from pages.about import show_about

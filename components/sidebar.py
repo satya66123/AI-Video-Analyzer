@@ -46,6 +46,10 @@ def show_sidebar():
         models
     )
 
+
+    st.session_state["provider"] = provider_name
+    st.session_state["model"] = selected_model
+
     if provider.health_check():
         st.sidebar.success("Provider Connected")
     else:
