@@ -70,7 +70,7 @@ def show_dashboard(provider_name, selected_model):
 
         st.subheader("🚀 Project Progress")
 
-        progress = 60
+        progress = 75
 
         st.progress(progress)
 
@@ -83,7 +83,7 @@ def show_dashboard(provider_name, selected_model):
             "✅ Audio Processing",
             "✅ Speech-to-Text",
             "✅ AI Video Analysis",
-            "⬜ AI Chat",
+            "✅ AI Chat",
             "⬜ Export & Reports",
             "⬜ Testing",
             "⬜ Documentation"

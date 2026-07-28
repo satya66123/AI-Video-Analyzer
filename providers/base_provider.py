@@ -1,20 +1,23 @@
 from abc import ABC, abstractmethod
 
 
+
+
 class BaseProvider(ABC):
-    """
-    Abstract base class for all AI providers.
-    """
 
     @abstractmethod
-    def get_models(self):
-        """Return available models."""
+    def generate(self, prompt, model):
         pass
 
-    @abstractmethod
-    def generate(self,model:str, prompt: str):
-        """Generate AI response."""
-        pass
+    # NEW
+    def generate_stream(self, prompt, model):
+        """
+        Optional streaming support.
+
+        Default implementation falls back
+        to normal generation.
+        """
+        yield self.generate(prompt, model)
 
     @abstractmethod
     def health_check(self):

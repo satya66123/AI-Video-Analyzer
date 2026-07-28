@@ -1,20 +1,6 @@
-import streamlit as st
+from components.ai_chat import show_ai_chat_component
 
 
 def show_ai_chat():
 
-    st.header("💬 AI Chat")
-
-    st.write("""
-Chat with your uploaded videos.
-
-Features:
-- Ask Questions
-- Video Context
-- AI Responses
-- Conversation History
-""")
-
-    st.divider()
-
-    st.info("🚧 This module will be implemented in Phase 6.")
+    show_ai_chat_component()

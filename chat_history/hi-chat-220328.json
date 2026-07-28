@@ -1,0 +1,10 @@
+[
+    {
+        "user": "hi",
+        "assistant": "Hello! Good to see you here today. Let me know if there's anything I can help you with. How are you doing?"
+    },
+    {
+        "user": "whats this message implies",
+        "assistant": "I couldn't find that information in the transcript."
+    }
+]

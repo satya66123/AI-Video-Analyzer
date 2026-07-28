@@ -1,0 +1,14 @@
+[
+    {
+        "user": "hi",
+        "assistant": "Hello! How can I assist you today?"
+    },
+    {
+        "user": "can you tell how to get videos ",
+        "assistant": "I couldn't find that information in the transcript."
+    },
+    {
+        "user": "what is this about",
+        "assistant": "This video appears to be a motivational speech or inspirational message delivered on a morning show, likely aimed at spreading positive energy and encouraging viewers. The speaker wishes everyone happiness, good health, success, and positivity for the day ahead. They also express hope that their day will be filled with joy and general well-being from God blessing them all."
+    }
+]

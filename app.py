@@ -19,6 +19,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+if "current_chat" not in st.session_state:
+    st.session_state.current_chat = None
+
 # Sidebar
 page, provider_name, selected_model = show_sidebar()
 

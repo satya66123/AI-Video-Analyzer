@@ -76,7 +76,8 @@ def show_speech_to_text():
         selected_audio
     )
 
-    st.audio(audio_path)
+    if audio_path and os.path.exists(audio_path):
+        st.audio(audio_path)
 
     if st.button(
         "📝 Transcribe",
