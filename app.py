@@ -1,8 +1,17 @@
 import streamlit as st
 
-from providers.provider_factory import ProviderFactory
-from providers.model_manager import ModelManager
-from config.settings import Settings
+from components.sidebar import show_sidebar
+
+from pages.dashboard import show_dashboard
+from pages.video_upload import show_video_upload
+from pages.audio_processing import show_audio_processing
+from pages.speech_to_text import show_speech_to_text
+from pages.ai_analysis import show_ai_analysis
+from pages.ai_chat import show_ai_chat
+from pages.reports import show_reports
+from pages.about import show_about
+
+
 st.set_page_config(
     page_title="AI Video Analyzer",
     page_icon="🎬",
@@ -10,98 +19,44 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.sidebar.title("Navigation")
+# Sidebar
+page, provider_name, selected_model = show_sidebar()
 
-page = st.sidebar.radio(
-    "Select Page",
-    [
-        "Home",
-        "About"
-    ]
-)
-
-st.sidebar.title("⚙ AI Settings")
-
-provider_name = st.sidebar.selectbox(
-
-    "Provider",
-
-    [
-
-        "Ollama",
-
-        "OpenAI",
-
-        "Anthropic"
-
-    ],
-
-    index=0
-
-)
-
-provider = ProviderFactory.get_provider(
-    provider_name
-)
-
-models = ModelManager.get_models(
-    provider_name
-)
-
-selected_model = st.sidebar.selectbox(
-
-    "Model",
-
-    models
-
-)
-
-if provider.health_check():
-
-    st.sidebar.success(
-        "Provider Connected"
-    )
-
-else:
-
-    st.sidebar.error(
-        "Provider Not Available"
-    )
-
-
-
+# Main Title
 st.title("🎬 AI Video Analyzer")
 
-if page == "Home":
+# Navigation
+if page == "Dashboard":
 
-    st.header("🏠 Home")
-    st.info("Welcome to AI Video Analyzer.")
+    show_dashboard(
+        provider_name,
+        selected_model
+    )
 
-    st.write("---")
+elif page == "Video Upload":
 
-    col1, col2 = st.columns(2)
+    show_video_upload()
 
-    with col1:
+elif page == "Audio Processing":
 
-        st.metric(
-            "Provider",
-            provider_name
-        )
+    show_audio_processing()
 
-    with col2:
+elif page == "Speech-to-Text":
 
-        st.metric(
-            "Model",
-            selected_model
-        )
+    show_speech_to_text()
+
+elif page == "AI Analysis":
+
+    show_ai_analysis()
+
+elif page == "AI Chat":
+
+    show_ai_chat()
+
+elif page == "Reports":
+
+    show_reports()
 
 elif page == "About":
 
-    st.header("ℹ️ About")
-
-    st.write("""
-AI Video Analyzer is a Streamlit application that uses
-Artificial Intelligence to analyze videos.
-
-Version: v1.0.0
-""")
+    show_about()
