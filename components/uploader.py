@@ -10,47 +10,66 @@ from components.metadata import show_metadata
 def show_uploader():
 
     uploaded_video = st.file_uploader(
-
         "Upload Video",
-
         type=[
             "mp4",
             "avi",
             "mov",
             "mkv",
             "webm"
-        ]
+        ],
+        key="video_uploader"
     )
 
-    if not uploaded_video:
-
+    if uploaded_video is None:
         return
 
-    valid, message = FileValidator.validate(
-        uploaded_video
-    )
+    st.info(f"Selected File: {uploaded_video.name}")
 
-    if not valid:
+    if st.button(
+        "📤 Upload Video",
+        type="primary",
+        use_container_width=True
+    ):
 
-        st.error(message)
+        valid, message = FileValidator.validate(
+            uploaded_video
+        )
 
-        return
+        if not valid:
+            st.error(message)
+            return
 
-    progress = st.progress(0)
 
-    filepath = VideoService.save_video(
-        uploaded_video,
-        progress
-    )
 
-    st.success("Video Uploaded Successfully")
+        if VideoService.is_duplicate(uploaded_video):
+            st.warning(
+                "⚠ This video already exists."
+            )
 
-    st.video(filepath)
+            return
 
-    metadata = VideoMetadata.get_metadata(
-        filepath
-    )
+        progress_bar = st.progress(0)
 
-    if metadata:
+        status_text = st.empty()
 
-        show_metadata(metadata)
+        filepath = VideoService.save_video(
+            uploaded_video,
+            progress_bar,
+            status_text
+        )
+
+        progress_bar.progress(100)
+
+        st.success("✅ Video Uploaded Successfully")
+
+        st.video(filepath)
+
+        metadata = VideoMetadata.get_metadata(
+            filepath
+        )
+
+        if metadata:
+            show_metadata(metadata)
+
+        st.rerun()
