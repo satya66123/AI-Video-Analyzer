@@ -70,7 +70,7 @@ def show_dashboard(provider_name, selected_model):
 
         st.subheader("🚀 Project Progress")
 
-        progress = 30
+        progress = 60
 
         st.progress(progress)
 
@@ -81,8 +81,8 @@ def show_dashboard(provider_name, selected_model):
             "✅ Provider Management",
             "✅ Video Upload & Management",
             "✅ Audio Processing",
-            "⬜ Speech-to-Text",
-            "⬜ AI Video Analysis",
+            "✅ Speech-to-Text",
+            "✅ AI Video Analysis",
             "⬜ AI Chat",
             "⬜ Export & Reports",
             "⬜ Testing",
@@ -110,8 +110,8 @@ def show_dashboard(provider_name, selected_model):
 
     st.info("""
 - Upload videos from the **Video Upload** page.
-- Audio extraction will be available in **Phase 3**.
-- Speech-to-Text will be added in **Phase 4**.
-- AI-powered video analysis will be available in **Phase 5**.
+- Audio extraction done.
+- Speech-to-Text done.
+- AI-powered video analysis done.
 - Chat with your videos will be available in **Phase 6**.
 """)
