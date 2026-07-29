@@ -39,3 +39,56 @@ def show_export_transcripts():
         mime="application/zip",
         use_container_width=True
     )
+"""
+Transcript Reports Component
+"""
+
+
+def show_transcript_reports() -> None:
+    """Render Transcript Reports tab."""
+
+    st.subheader("📑 Transcript Reports")
+
+    transcript = st.session_state.get("transcript", "")
+
+    if not transcript:
+        st.info("No transcript available.")
+        return
+
+    st.text_area(
+        "Transcript",
+        transcript,
+        height=350,
+    )
+
+    st.divider()
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric(
+            "Words",
+            len(transcript.split())
+        )
+
+    with col2:
+        st.metric(
+            "Characters",
+            len(transcript)
+        )
+
+    with col3:
+        st.metric(
+            "Lines",
+            len(transcript.splitlines())
+        )
+
+    st.divider()
+
+    st.download_button(
+        "⬇ Download TXT",
+        transcript,
+        file_name="transcript.txt",
+        mime="text/plain",
+        use_container_width=True,
+    )
