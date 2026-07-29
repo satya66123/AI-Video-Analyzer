@@ -1,4 +1,5 @@
 import os
+from typing import Generator, List
 
 from openai import OpenAI
 
@@ -6,14 +7,27 @@ from providers.base_provider import BaseProvider
 
 
 class OpenAIProvider(BaseProvider):
+    """
+    OpenAI Provider
+    """
 
     def __init__(self):
 
         self.api_key = os.getenv("OPENAI_API_KEY")
 
-        self.client = OpenAI(api_key=self.api_key)
+        if not self.api_key:
+            raise ValueError(
+                "OPENAI_API_KEY environment variable not found."
+            )
 
-    def get_models(self):
+        self.client = OpenAI(
+            api_key=self.api_key
+        )
+
+    def get_models(self) -> List[str]:
+        """
+        Fetch available OpenAI models.
+        """
 
         try:
 
@@ -27,7 +41,14 @@ class OpenAIProvider(BaseProvider):
 
             return []
 
-    def generate(self,model, prompt):
+    def generate(
+        self,
+        prompt: str,
+        model: str
+    ) -> str:
+        """
+        Generate a response using the OpenAI Responses API.
+        """
 
         try:
 
@@ -42,7 +63,36 @@ class OpenAIProvider(BaseProvider):
 
             return f"Error: {str(e)}"
 
-    def health_check(self):
+    def generate_stream(
+        self,
+        prompt: str,
+        model: str
+    ) -> Generator[str, None, None]:
+        """
+        Streaming response.
+
+        Currently falls back to normal generation.
+        Replace this with native OpenAI streaming
+        if streaming is required in the future.
+        """
+
+        try:
+
+            response = self.generate(
+                prompt=prompt,
+                model=model
+            )
+
+            yield response
+
+        except Exception as e:
+
+            yield f"Error: {str(e)}"
+
+    def health_check(self) -> bool:
+        """
+        Verify OpenAI connectivity.
+        """
 
         try:
 

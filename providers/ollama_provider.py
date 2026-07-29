@@ -1,4 +1,5 @@
 import json
+from typing import Dict, Generator
 
 import requests
 
@@ -6,10 +7,13 @@ from providers.base_provider import BaseProvider
 
 
 class OllamaProvider(BaseProvider):
+    """
+    Ollama AI Provider
+    """
 
     BASE_URL = "http://localhost:11434"
 
-    def get_models(self):
+    def get_models(self) -> Dict:
 
         try:
             response = requests.get(
@@ -21,10 +25,14 @@ class OllamaProvider(BaseProvider):
 
             return response.json()
 
-        except Exception:
+        except requests.exceptions.RequestException:
             return {}
 
-    def generate(self, prompt, model):
+    def generate(
+        self,
+        prompt: str,
+        model: str
+    ) -> str:
 
         payload = {
             "model": model,
@@ -32,52 +40,77 @@ class OllamaProvider(BaseProvider):
             "stream": False
         }
 
-        response = requests.post(
-            f"{self.BASE_URL}/api/generate",
-            json=payload,
-            timeout=300
-        )
-
-        response.raise_for_status()
-
-        return response.json()["response"]
-
-    def health_check(self):
-
         try:
-            response = requests.get(
-                self.BASE_URL,
-                timeout=5
+            response = requests.post(
+                f"{self.BASE_URL}/api/generate",
+                json=payload,
+                timeout=300
             )
 
-            return response.status_code == 200
+            response.raise_for_status()
 
-        except Exception:
-            return False
+            return response.json().get("response", "")
 
-    def generate_stream(self, prompt, model):
+        except requests.exceptions.Timeout:
+            return "Error: Request timed out."
+
+        except requests.exceptions.ConnectionError:
+            return "Error: Unable to connect to Ollama."
+
+        except requests.exceptions.RequestException as e:
+            return f"Error: {str(e)}"
+
+    def generate_stream(
+        self,
+        prompt: str,
+        model: str
+    ) -> Generator[str, None, None]:
 
         payload = {
             "model": model,
             "prompt": prompt,
-            "stream": True,
+            "stream": True
         }
 
-        response = requests.post(
-            f"{self.BASE_URL}/api/generate",
-            json=payload,
-            stream=True,
-            timeout=300,
-        )
+        try:
+            response = requests.post(
+                f"{self.BASE_URL}/api/generate",
+                json=payload,
+                stream=True,
+                timeout=300
+            )
 
-        response.raise_for_status()
+            response.raise_for_status()
 
-        for line in response.iter_lines():
+            for line in response.iter_lines():
 
-            if not line:
-                continue
+                if not line:
+                    continue
 
-            data = json.loads(line)
+                data = json.loads(line)
 
-            if "response" in data:
-                yield data["response"]
+                yield data.get("response", "")
+
+        except requests.exceptions.Timeout:
+            yield "Error: Request timed out."
+
+        except requests.exceptions.ConnectionError:
+            yield "Error: Unable to connect to Ollama."
+
+        except requests.exceptions.RequestException as e:
+            yield f"Error: {str(e)}"
+
+    def health_check(self) -> bool:
+
+        try:
+            response = requests.get(
+                f"{self.BASE_URL}/api/tags",
+                timeout=5
+            )
+
+            response.raise_for_status()
+
+            return True
+
+        except requests.exceptions.RequestException:
+            return False
