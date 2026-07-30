@@ -23,6 +23,13 @@
 ![Pull Requests](https://img.shields.io/github/issues-pr/satya66123/AI-Video-Analyzer)
 ![Stars](https://img.shields.io/github/stars/satya66123/AI-Video-Analyzer?style=social)
 ![Forks](https://img.shields.io/github/forks/satya66123/AI-Video-Analyzer?style=social)
+[![GitHub Actions](https://github.com/satya66123/AI-Video-Analyzer/actions/workflows/python-app.yml/badge.svg)](https://github.com/satya66123/AI-Video-Analyzer/actions/workflows/python-app.yml)
+![Project Status](https://img.shields.io/badge/Project%20Status-Production%20Ready-brightgreen?style=for-the-badge&logo=github)
+![Version](https://img.shields.io/badge/Version-v1.0.0-blue?style=for-the-badge&logo=semantic-release)
+![Release](https://img.shields.io/badge/Release-Completed-success?style=for-the-badge&logo=checkmarx)
+![Build](https://img.shields.io/badge/Build-Stable-success?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen?style=for-the-badge&logo=pytest)
+![Documentation](https://img.shields.io/badge/Documentation-100%25-success?style=for-the-badge&logo=readthedocs)
 
 # AI-Powered Video Analysis using Whisper & Multiple LLM Providers
 
