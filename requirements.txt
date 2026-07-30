@@ -26,7 +26,7 @@ torch>=2.7.1
 torchaudio>=2.7.1
 
 # Video Processing
-moviepy>=1.0.3
+moviepy==1.0.3
 opencv-python>=4.12.0.88
 
 # Audio Metadata
