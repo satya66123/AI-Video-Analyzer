@@ -228,23 +228,36 @@ def show_dashboard(provider_name, selected_model):
 
     with col1:
 
-        st.subheader("📁 Recent Videos")
+        st.subheader("📜 Version History")
 
-        if videos:
+        version_history = [
+            ("v1.0.0", "Production Release", "Complete AI Video Analyzer with all core features."),
+            ("v0.9.0", "Release Candidate", "Completed testing, documentation, and bug fixes."),
+            ("v0.8.0", "Export Module", "Added TXT, Markdown, HTML, and PDF export support."),
+            ("v0.7.0", "AI Chat", "Implemented AI-powered chat with transcript context."),
+            ("v0.6.0", "AI Analysis", "Added video summarization, key points, and action items."),
+            ("v0.5.0", "Speech-to-Text", "Integrated OpenAI Whisper transcription."),
+            ("v0.4.0", "Audio Processing", "Implemented video-to-audio extraction using FFmpeg."),
+            ("v0.3.0", "Video Management", "Added video upload and file management."),
+            ("v0.2.0", "Provider Support", "Integrated Ollama, OpenAI, and Anthropic providers."),
+            ("v0.1.0", "Initial Release", "Project initialization and Streamlit dashboard.")
+        ]
 
-            recent_videos = sorted(videos, reverse=True)[:5]
+        for version, title, description in version_history:
+            st.markdown(
+                f"""
+        **{version}** — **{title}**
 
-            for video in recent_videos:
-                st.write(f"🎬 {video}")
+        - {description}
 
-        else:
-            st.info("No videos uploaded yet.")
+        """
+            )
 
     with col2:
 
         st.subheader("🚀 Project Progress")
 
-        progress = 80
+        progress = 100
 
         st.progress(progress)
 
@@ -259,8 +272,8 @@ def show_dashboard(provider_name, selected_model):
             "✅ AI Video Analysis",
             "✅ AI Chat",
             "✅ Export & Reports",
-            "⬜ Testing",
-            "⬜ Documentation"
+            "✅ Testing",
+            "✅ Documentation"
         ]
 
         for item in roadmap:
@@ -280,12 +293,79 @@ def show_dashboard(provider_name, selected_model):
 
     st.divider()
 
+    st.divider()
+
+    st.subheader("📦 Application Information")
+
+    app_col1, app_col2, app_col3 = st.columns(3)
+
+    with app_col1:
+        st.success("📌 Version\n\nv1.0.0")
+
+    with app_col2:
+        st.success("🚀 Status\n\nProduction Ready")
+
+    with app_col3:
+        st.success("📄 License\n\nMIT")
+
+    st.divider()
+
+    st.subheader("🖥️ System Information")
+
+    sys_col1, sys_col2, sys_col3 = st.columns(3)
+
+    with sys_col1:
+        st.info("🐍 Python\n\n3.11+")
+
+    with sys_col2:
+        st.info("🌐 Framework\n\nStreamlit")
+
+    with sys_col3:
+        st.info("🎤 Speech Engine\n\nOpenAI Whisper")
+
+    sys_col4, sys_col5, sys_col6 = st.columns(3)
+
+    with sys_col4:
+        st.info("🎵 Media Engine\n\nFFmpeg")
+
+    with sys_col5:
+        st.info(f"🤖 Provider\n\n{provider_name}")
+
+    with sys_col6:
+        st.info(f"🧠 Model\n\n{selected_model}")
+
+    st.divider()
+
     st.subheader("📌 Quick Tips")
 
-    st.info("""
-- Upload videos from the **Video Upload** page.
-- Audio extraction done.
-- Speech-to-Text done.
-- AI-powered video analysis done.
-- Chat with your videos will be available in **Phase 6**.
-""")
+    st.markdown("""
+    - 📹 Upload videos in **MP4, AVI, MOV, MKV, or WEBM** format.
+
+    - 🎵 Extract audio before generating transcripts.
+
+    - 🎤 Generate transcripts using **OpenAI Whisper**.
+
+    - 🤖 Select the AI provider and model before AI analysis.
+
+    - 📝 Review transcripts before generating AI insights.
+
+    - 📊 Analyze videos to obtain summaries, key points, and action items.
+
+    - 📤 Export reports in **TXT, Markdown, HTML, or PDF** format.
+
+    - ⚡ Larger videos may require additional processing time.
+
+    - 🛠️ Ensure FFmpeg and Whisper are installed correctly.
+
+    - 💾 Regularly back up transcripts and exported reports.
+    """)
+
+    st.divider()
+
+    st.markdown("---")
+
+    st.caption("🎥 AI Video Analyzer • Version **1.0.0**")
+
+    st.caption("👨‍💻 Developed by **Nekkanti Satya Srinath**")
+
+    st.caption("© 2026 • Powered by Python, Streamlit, Whisper, FFmpeg & Multiple AI Providers")
