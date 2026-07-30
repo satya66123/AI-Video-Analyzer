@@ -1,7 +1,6 @@
 # 🎥 AI Video Analyzer
 
 <div align="center">
-
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)
 ![OpenAI Whisper](https://img.shields.io/badge/OpenAI-Whisper-412991?logo=openai)
