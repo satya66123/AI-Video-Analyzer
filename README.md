@@ -23,7 +23,7 @@
 ![Pull Requests](https://img.shields.io/github/issues-pr/satya66123/AI-Video-Analyzer)
 ![Stars](https://img.shields.io/github/stars/satya66123/AI-Video-Analyzer?style=social)
 ![Forks](https://img.shields.io/github/forks/satya66123/AI-Video-Analyzer?style=social)
-[![GitHub Actions](https://github.com/satya66123/AI-Video-Analyzer/actions/workflows/python-app.yml/badge.svg)](https://github.com/satya66123/AI-Video-Analyzer/actions/workflows/python-app.yml)
+[![GitHub Actions](https://github.com/satya66123/AI-Video-Analyzer/actions/workflows/python-tests.yml/badge.svg)](https://github.com/satya66123/AI-Video-Analyzer/actions/workflows/python-app.yml)
 ![Project Status](https://img.shields.io/badge/Project%20Status-Production%20Ready-brightgreen?style=for-the-badge&logo=github)
 ![Version](https://img.shields.io/badge/Version-v1.0.0-blue?style=for-the-badge&logo=semantic-release)
 ![Release](https://img.shields.io/badge/Release-Completed-success?style=for-the-badge&logo=checkmarx)
