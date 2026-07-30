@@ -26,11 +26,12 @@ torch>=2.7.1
 torchaudio>=2.7.1
 
 # Video Processing
-moviepy>=2.2.1
+moviepy>=1.0.3
 opencv-python>=4.12.0.88
 
 # Audio Metadata
 mutagen>=1.47.0
+pydub>=0.25.1
 
 # Image Processing
 Pillow>=11.3.0
